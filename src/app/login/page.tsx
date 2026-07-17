@@ -1,10 +1,18 @@
 "use client";
 
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const router = useRouter();
+  useEffect(() => {
+  const userId = localStorage.getItem("userId");
+
+  if (userId) {
+    router.push("/dashboard");
+  }
+}, [router]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

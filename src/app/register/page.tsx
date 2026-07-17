@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function RegisterPage() {
@@ -9,6 +10,13 @@ export default function RegisterPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(() => {
+  const userId = localStorage.getItem("userId");
+
+  if (userId) {
+    router.push("/dashboard");
+  }
+}, [router]);
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
